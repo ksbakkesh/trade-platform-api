@@ -1,0 +1,52 @@
+{
+  "groups": [
+    {
+      "name": "angelone",
+      "type": "com.tradingplatform.config.AngelOneProperties",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "angelone.api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.base-url",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.client-code",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.client-local-ip",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.client-public-ip",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.mac-address",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.password",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    },
+    {
+      "name": "angelone.totp-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tradingplatform.config.AngelOneProperties"
+    }
+  ],
+  "hints": []
+}

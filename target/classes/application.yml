@@ -1,0 +1,60 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: trading-platform
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/trading_platform}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    hibernate:
+      # 'validate' on purpose - Flyway owns the schema, Hibernate just checks entities match it.
+      # Never use 'update' here; schema changes should always go through a new migration file.
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: false
+
+# Used by EncryptedStringConverter to encrypt broker credentials at rest.
+# Generate with: openssl rand -base64 32
+encryption:
+  key: ${ENCRYPTION_KEY:}
+
+# JWT Authentication
+# Generate secret with: openssl rand -base64 64
+jwt:
+  secret: ${JWT_SECRET:TradePlatformDefaultSecretKeyForDevelopmentOnlyChangeInProduction2024}
+  expiration-hours: 24
+
+# Angel One SmartAPI credentials
+# CRITICAL: never commit real values. Set these as environment variables
+# (or a .env file loaded via your shell / Docker secrets) before starting the app.
+angelone:
+  api-key: ${ANGELONE_API_KEY:}
+  client-code: ${ANGELONE_CLIENT_CODE:}
+  password: ${ANGELONE_PASSWORD:}          # this is the account PIN/password, not the TOTP secret
+  totp-secret: ${ANGELONE_TOTP_SECRET:}    # base32 secret shown when you set up TOTP on Angel One's site
+  base-url: https://apiconnect.angelone.in
+  # Angel One requires these headers on every call. A LAN/loopback placeholder is fine for dev;
+  # set real values via env vars in production if Angel One starts enforcing them strictly.
+  client-local-ip: ${ANGELONE_LOCAL_IP:192.168.1.1}
+  client-public-ip: ${ANGELONE_PUBLIC_IP:106.193.147.98}
+  mac-address: ${ANGELONE_MAC_ADDRESS:fe80::216e:6507:4b90:3719}
+
+logging:
+  level:
+    com.tradingplatform: DEBUG
